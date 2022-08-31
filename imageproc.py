@@ -1,4 +1,3 @@
-from configparser import Interpolation
 import cv2
 import os
 import numpy as np
@@ -15,12 +14,17 @@ try:
 
     gray = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
     
-    blur =  cv2.blur(orig, (5,5))
+    # blur =  cv2.blur(orig, (5,5))
+    # blur =  cv2.medianBlur(orig, 5)
+    blur =  cv2.GaussianBlur(orig, (11,11), 0)
 
     cv2.imshow('Orig', orig)
     cv2.imshow('Gray', gray)
     cv2.imshow('Blur', blur)
     
+#    if cv2.waitKey(1) & 0xFF == ord('q'):
+#        break
+
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
